@@ -1,0 +1,8 @@
+Non-Targeted Attack
+	sudo nvidia-docker run -v [PATH]/nips_adversarial_competition/dataset/images:/input_images -v [PATH]/nips_adversarial_competition/output_dir/pgd_final:/output_images/ -v [PATH]/nips_adversarial_competition/pgd/:/code -w /code gcr.io/tensorflow/tensorflow:1.1.0-gpu ./run_attack.sh /input_images /output_images 10
+
+Targeted Attack
+	sudo nvidia-docker run -v [PATH]/nips_adversarial_competition/dataset/images:/input_images -v [PATH]/nips_adversarial_competition/output_dir/target_final:/output_images/ -v [PATH]/nips_adversarial_competition/pgd_target/:/code -w /code gcr.io/tensorflow/tensorflow:1.1.0-gpu ./run_attack.sh /input_images /output_images 10
+
+Eval
+	sudo nvidia-docker run -v [PATH]/nips_adversarial_competition/output_dir/pgd_final:/input_images -v [PATH]/nips_adversarial_competition/dataset/dev_dataset.csv:/data.csv -v [PATH]/nips_adversarial_competition/ensemble_defense/:/code -w /code gcr.io/tensorflow/tensorflow:1.1.0-gpu ./run_eval.sh /input_images /data.csv
